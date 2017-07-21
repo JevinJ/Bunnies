@@ -1,232 +1,77 @@
+/*
+ * bunny.cpp
+ *
+ *  Created on: Jul 16, 2017
+ *      Author: User
+ */
+
 #include <iostream>
-#include <vector>
-#include <stdlib.h>
-#include <time.h>
-#include <curses.h>
-#include <algorithm>
-std::vector<std::vector<char>> grid(80, std::vector<char>(80, ' '));
+#include "bunny.h"
 
-class RandGen {
-public:
-	int color() {
-		return(rand() % 4 + 1);
-	}
-	int sex() {
-		return(rand() % 2 + 1);
-	}
-	std::string name() {						//TODO
-		return("");
-	}
-	bool radio() {
-		if((rand() % 101) <= 2) {
-			return(true);
-		}
-		return(false);
-	}
-	std::pair<int, int> location() {
-		return(std::make_pair(rand() % 80, rand() % 80));
-	}
-	std::pair<int, int> n_loc(std::vector<std::pair<int, int>> poss_loc) {
-		return(poss_loc[rand() % poss_loc.size()]);
-	}
-} random;
-
-class Bunny {
-public:
-	int sex = 0;				//1: Male, 2: Female
-	int color = 0;				//1: White, 2: Brown, 3: Black, 4: Spotted
-	int age = 0;
-	std::string name = "";
-	bool isRadio = false;
-	bool isAdult = false;
-	std::pair <int, int> loc;
-	Bunny(){
-		sex = random.sex();
-		color = random.color();
-		age = 0;
-		name = random.name();				//TODO
-		isRadio = random.radio();
-		isAdult = false;
-		loc = random.location();
-	}
-	Bunny(int m_color, std::pair<int, int> location) {
-		sex = random.sex();
-		color = m_color;
-		age = 0;
-		name = random.name();
-		isRadio = random.radio();
-		isAdult = false;
-		loc = location;
-	}
-};
-
-char sexChar(int sex, bool isAdult, bool isRadio) {
-	if(isRadio) {
-		return('X');
-	}
-	if(!isAdult && sex == 1) {
-		return('m');
-	}
-	if(isAdult && sex == 1) {
-		return('M');
-	}
-	if(!isAdult && sex == 2) {
-		return('f');
-	}
-	else {
-		return('F');
-	}
+void Bunny::make_adult() {
+    isAdult = true;
 }
 
-void print(std::vector<std::vector<char>> grid) {
-	//wclear(stdscr);
-	//wrefresh(stdscr);
-	for(int i = 0; i <= 79; i++) {
-		std::cout << i % 10 << " ";
-	}
-	for(int i = 79; i >= 0; i--) {
-		std::cout << '\n';
-		std::cout << i;
-		for(int it = 0; it <= 79; it++) {
-			std::cout << grid[it][i] << '|';
-		}
-	}
-}
-
-std::vector<std::vector<char>> update(std::vector<Bunny> pop) {
-	std::vector<std::vector<char>> grid(80, std::vector<char>(80, ' '));
-	for(int i = 0; i < pop.size(); i++) {
-		grid[pop[i].loc.first][pop[i].loc.second] = sexChar(pop[i].sex, pop[i].isAdult, pop[i].isRadio);
-	}
-	return(grid);
-}
-
-std::vector<Bunny> killAge(std::vector<Bunny> pop) {
-	int resize = pop.size();
-	for(int i = 0; i < pop.size(); i++) {
-		if(pop[i].age >= 10 && pop[i].isRadio == false) {		//Kill normal bunnies if 10
-			std::swap(pop[i], pop.back());
-			resize -= 1;
-			std::cout << "KILLED " << i << '\n';
-		}
-		if(pop[i].age >= 50 && pop[i].isRadio) {
-			std::swap(pop[i], pop.back());
-			resize -= 1;
-			std::cout << "KILLED " << i << '\n';
-	}
-	pop.resize(resize);
-	return(pop);
-	}
-}
-
-std::vector<std::pair<int, int>> findEmptySpace (std::vector<std::vector<char>> grid, int x, int y) {					//1|2|3
-	std::vector<std::pair<int, int>> poss_loc;																		    //4| |5
-	if(x - 1 >= 0 && y + 1 <= 79 && grid[x-1][y+1] == ' ') {															//6|7|8
-		poss_loc.push_back(std::make_pair<int, int>(int(x - 1), int(y + 1)));
-	}
-	if(y + 1 <= 79 && grid[x][y + 1] == ' ') {
-		poss_loc.push_back(std::make_pair<int, int>(int(x), int(y + 1)));
-	}
-	if(x + 1 <= 79 && y + 1 <= 79 && grid[x+1][y+1] == ' ') {
-		poss_loc.push_back(std::make_pair<int, int>(int(x + 1), int(y + 1)));
-	}
-	if(x - 1 >= 0 && grid[x - 1][y] == ' ') {
-		poss_loc.push_back(std::make_pair<int, int>(int(x - 1), int(y)));
-	}
-	if(x + 1 <= 79 && grid[x + 1][y] == ' ') {
-		poss_loc.push_back(std::make_pair<int, int>(int(x + 1), int(y)));
-	}
-	if(x - 1 >= 0 && y - 1 >= 0 && grid[x-1][y-1] == ' ') {
-		poss_loc.push_back(std::make_pair<int, int>(int(x - 1), int(y - 1)));
-	}
-	if(y - 1 >= 0 && grid[x][y - 1] == ' ') {
-		poss_loc.push_back(std::make_pair<int, int>(int(x), int(y - 1)));
-	}
-	if(x + 1 <= 79 && y - 1 >= 0 && grid[x+1][y-1] == ' ') {
-		poss_loc.push_back(std::make_pair<int, int>(int(x + 1), int(y - 1)));
-	}
-	return(poss_loc);
-}
-
-std::vector <Bunny> makeBunny(std::vector<Bunny> pop, std::vector<std::vector<char>> grid) {
-	int males = 0;
-	for(int i = 0; i < pop.size(); i++){
-		if(pop[i].sex == 2 && pop[i].isAdult) {
-			for(int it = 0; it < pop.size(); it++) {
-				if(pop[i].sex == 1 && pop[i].isAdult) {
-					males += 1;
-				}
-			}
-			std::vector<std::pair<int, int>> poss_loc = findEmptySpace(grid, pop[i].loc.first, pop[i].loc.second);
-			while(poss_loc.size() != 0 && males > 0) {
-				std::pair<int, int> n_loc = random.n_loc(poss_loc);
-				pop.push_back(Bunny(pop[i].color, n_loc));
-				for(int i = 0; i < poss_loc.size(); i++) {
-					if(poss_loc[i] == n_loc) {
-						std::cout << "POSS LOC MATCH" << '\n';
-						poss_loc.erase(poss_loc.begin() + i);
-					}
-				}
-			}
-		}
-	}
-}
-
-std::vector<Bunny> moveBunny(std::vector<Bunny> pop) {
+void kill_of_age(Node *runner) {
+    if(runner == NULL) {
+        return;
+    }
+    if(not runner->bunny->isVamp and runner->bunny->age > 10) {
+        std::cout << "KILLED NORMIES BUNNY AT: " << runner->bunny->loc.first << runner->bunny->loc.second << '\n';
+        //do relinking
+    }
+    if(runner->bunny->isVamp and runner->bunny->age > 50) {
+        std::cout << "KILLED RADIO BUNNY AT: " << runner->bunny->loc.first << runner->bunny->loc.second << '\n';
+        //do relinking
+    }
+    kill_of_age(runner->next);
 }
 
 
-
-bool checkGameOver(std::vector<Bunny> pop) {
-	return(false);
+int count_males(Node *runner, int males) {
+    if(runner == NULL) {
+        return males;
+    }
+    if(runner->bunny->sex == 1 and runner->bunny->age >= 2) {
+        males += 1;
+    }
+    count_males(runner->next, males);
+    return males;
 }
 
-int main() {
+//Helper function to create new linked list to hold bunnies, mode options =
+//false: creates initial 5 random bunny nodes including head and tail nodes
+//true: for birthed bunnies
+Node *newNode(int m_color, std::pair<int, int> location, bool mode) {
+    Node *node = new (struct Node);
+    if(mode == false) {
+        node->bunny = new Bunny();
+        return node;
+    }
+    if(mode == true) {
+        node->bunny = new Bunny(m_color, location);
+        return node;
+    }
+}
 
-	std::vector<Bunny> pop;
-	srand(time(NULL));
-	initscr();
-	for(int i = 0; i < 5; i++) {				//Initial 5 Bunnies
-		pop.push_back(Bunny());
-		std::cout << i << ' ';
-	}
-	for(int res = 0; res < 15; res++) {
+void init_bunnies(Node *&head, Node *&tail) {
+    head->next = tail;
+    tail->prev = head;
+    for(int i = 0; i < 5; i++) {
+        Node *node = newNode(-1, std::make_pair(-1, -1), false);
+        node->next = head->next;
+        node->prev = head;
+        head->next->prev = node;
+        head->next = node;
+    }
+}
 
-		pop = killAge(pop);
-		grid = update(pop);
-		pop = makeBunny(pop, grid);
-		print(grid);
-
-	for(int i = 0; i < pop.size(); i++) {
-		Bunny *bunny = &pop[i];
-		int x = bunny->loc.first;
-		int y = bunny->loc.second;
-
-
-
-				}
-			}
-		}
-		//std::cout << "bunny* loc: " << x << ' ' << y << '\n';
-
-
-		std::pair<int, int> n_loc = findEmptySpace(x, y);				//Possible locations to move to
-
-		if(poss_loc.size() > 0) {
-			std::pair<int, int> n_loc = random.n_loc(poss_loc);
-			char c_sex = sexChar(bunny->sex, bunny->age, bunny->isRadio);
-			update(pop[i], n_loc, c_sex);
-			bunny->loc.first = n_loc.first;
-			bunny->loc.second = n_loc.second;
-			std::cout << "NEW: " << bunny->loc.first << ' ' << bunny->loc.second << '\n';
-		}
-
-	}
-	print();
-	char z;
-	std::cin >> z;
-	}
-
-	return 0;
+int total_bunnies(Node *runner) {
+    int total = 0;
+    while(runner->next != NULL) {
+        total += 1;
+        runner = runner->next;
+    }
+    return total;
 }
 
