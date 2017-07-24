@@ -5,17 +5,21 @@
  *      Author: User
  */
 
+#include <iostream>
 #include <queue>
 #include <set>
 #include <stdlib.h>
-#include <iostream>
-#include "turn.h"
-#include "bunny.h"
 #include "board.h"
+#include "bunny.h"
+#include "misc.h"
+#include "turn.h"
 
 
-void age_bunnies(Node *runner) {
+int males = 0, females = 0, vampires = 0;
+
+void age_bunnies(Node *head) {
     std::queue<Node*> kill_queue;
+    Node *runner = head->next;
     while(runner->next != NULL) {
         runner->bunny->age += 1;
         if(not runner->bunny->isAdult and not runner->bunny->isVamp and runner->bunny->age >= 2) {
@@ -32,11 +36,9 @@ void age_bunnies(Node *runner) {
     execute_kill(kill_queue);
 }
 
-int males = 0;
-int females = 0;
-int vampires = 0;
-void count_types(Node *runner) {
-    males = 0, females = 0, vampires = 0;
+void count_types(Node *head) {
+    Node *runner = head->next;
+    males = 0; females = 0; vampires = 0;
     while(runner->next != NULL) {
         if(not runner->bunny->isVamp and runner->bunny->sex == 1) {
             males += 1;
@@ -51,9 +53,9 @@ void count_types(Node *runner) {
     }
 }
 
-bool checkGameOver(int males, int females, int vampires) {
-    int total = males + females + vampires;
-    if(total == males or total == females or total == vampires) {
+bool checkGameOver() {
+    int total = males+females+vampires;
+    if((males == 0 and females > 0) or (females == 0 and males > 0) or (total == males or total == females or total == vampires)) {
         if(vampires == total) {
             std::cout << "All your bunnies are vampires! Game over.";
             return true;
@@ -71,7 +73,7 @@ bool checkGameOver(int males, int females, int vampires) {
 }
 
 void turn_vamp(Node *head) {
-    int uninfected = (males + females) - vampires;
+    int uninfected = (males+females)-vampires;
     for(int i = 0; i < vampires and i < uninfected; i++, vampires--) {
         Node *runner = head->next;
         int r = rand() % uninfected;
@@ -81,7 +83,6 @@ void turn_vamp(Node *head) {
                 break;
             }
             if(j == r) {
-                //std::cout << "TURNED BUNNY: " << runner->bunny->loc.first << ' ' << runner->bunny->loc.second << " INTO A VMPIRE" << '\n';
                 runner->bunny->isVamp = true;
                 runner->bunny->isAdult = false;
                 break;
@@ -90,69 +91,29 @@ void turn_vamp(Node *head) {
             runner = runner->next;
         }
     }
+    count_types(head);
+    game.update_board(head);
 }
 
-//1|2|3
-//4| |5
-//6|7|8
-std::vector<std::pair<int, int>> check_nbors(Node *node) {
-    std::vector<std::pair<int, int>> empty_nbors;
-    int y = node->bunny->loc.first;
-    int x = node->bunny->loc.second;
-
-    if(game.board[(y-1)%80][(x-1)%80] == ' ') {
-        empty_nbors.push_back(std::make_pair((y-1)%80, (x-1)%80));
-    }
-    if(game.board[(y-1)%80][x] == ' ') {
-        empty_nbors.push_back(std::make_pair((y-1)%80, x));
-    }
-
-    if(game.board[(y-1)][(x+1)%80] == ' ') {
-        empty_nbors.push_back(std::make_pair((y-1)%80, (x+1)%80));
-    }
-    if(game.board[y][(x-1)%80] == ' ') {
-        empty_nbors.push_back(std::make_pair(y, (x-1)%80));
-    }
-    if(game.board[y][(x+1)%80] == ' ') {
-        empty_nbors.push_back(std::make_pair(y, (x+1)%80));
-    }
-    if(game.board[(y+1)%80][(x-1)%80] == ' ') {
-        empty_nbors.push_back(std::make_pair((y+1)%80, (x-1)%80));
-    }
-    if(game.board[(y+1)%80][x] == ' ') {
-        empty_nbors.push_back(std::make_pair((y+1)%80, x));
-    }
-    if(game.board[(y+1)%80][(y+1)%80] == ' ') {
-        empty_nbors.push_back(std::make_pair((y+1)%80, (x+1)%80));
-    }
-    return empty_nbors;
-}
-
-void move_bunny(Node *runner) {
+void birth_and_move(Node *&head) {
+    Node *runner = head->next;
     while(runner->next != NULL) {
         std::vector<std::pair<int, int>> empty_nbors = check_nbors(runner);
-        if(empty_nbors.size() > 0) {
-            int i = rand() % empty_nbors.size();
-            runner->bunny->loc = empty_nbors[i];
-            swap(empty_nbors[i], empty_nbors.back());
-            empty_nbors.pop_back();
-        }
-        runner = runner->next;
-    }
-}
-
-void birth_bunny(Node *runner, Node *&head) {
-    while(runner->next != NULL) {
-        std::vector<std::pair<int, int>> empty_nbors = check_nbors(runner);
+        //Give birth if bunny is female and has any free space
         if(runner->bunny->isAdult and runner->bunny->sex == 2 and empty_nbors.size() > 0) {
             int r = rand() % empty_nbors.size();
             int y = empty_nbors[r].first;
             int x = empty_nbors[r].second;
-            Node *node = newNode(runner->bunny->color, std::make_pair(y, x), true);
-            head->next->prev = node;
-            node->next = head->next;
-            node->prev = head;
-            head->next = node;
+            Node *node = new_node(runner->bunny->color, std::make_pair(y, x), true);
+            create_bunny_node(head, node);
+            empty_nbors.erase(empty_nbors.begin() + r);
+            game.update_board(head);
+        }
+        //Move if any free space
+        if(empty_nbors.size() > 0) {
+            int r = rand() % empty_nbors.size();
+            runner->bunny->loc = std::make_pair(empty_nbors[r].first, empty_nbors[r].second);
+            game.update_board(head);
         }
         runner = runner->next;
     }
@@ -160,20 +121,19 @@ void birth_bunny(Node *runner, Node *&head) {
 
 void execute_kill(std::queue<Node*> &kill_queue) {
     while(not kill_queue.empty()) {
-        Node *&node = kill_queue.front();
-        node->prev->next = node->next;
-        node->next->prev = node->prev;
-        delete node->bunny;
-        delete node;
+        Node *node = kill_queue.front();
+        destroy_bunny_node(node);
         kill_queue.pop();
     }
 }
 
-void apocalypse(Node *head, int total) {
+void food_shortage(Node *head) {
+    int total = males+females+vampires;
     std::queue<Node*> kill_queue;
-    //set to ensure we don't include the same bunny twice
+    //set to ensure we don't include the same bunny twice and keep pulling random
+    // numbers until we get a total ofe half the amount of bunnies
     std::set<int> kill_index;
-    while(kill_index.size() != 1000) {
+    while(kill_index.size() != total/2) {
         int r = rand() % total;
         kill_index.insert(r);
     }
@@ -185,12 +145,14 @@ void apocalypse(Node *head, int total) {
                 kill_queue.push(runner);
                 break;
             }
-            j++;
+            j += 1;
             runner = runner->next;
         }
     }
     execute_kill(kill_queue);
+    count_types(head);
 }
+
 
 
 

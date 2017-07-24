@@ -38,9 +38,6 @@ struct Bunny {
     void make_adult();
 };
 
-int count_males(Bunny *bunny, int males);
-
-
 struct Node {
     Bunny *bunny = NULL;
 
@@ -48,10 +45,8 @@ struct Node {
     Node *prev = NULL;
 };
 
-Node *newNode(int m_color, std::pair<int, int> location, bool mode);
+Node *new_node(int m_color, std::pair<int, int> location, bool mode);
 
 void init_bunnies(Node *&head, Node *&tail);
-
-int total_bunnies(Node *runner);
 
 #endif /* BUNNY_H_ */

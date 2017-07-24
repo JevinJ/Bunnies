@@ -37,7 +37,9 @@ void Board::clear_board() {
     }
 }
 
-void Board::update_board(Node *runner) {
+void Board::update_board(Node *head) {
+    clear_board();
+    Node *runner = head->next;
     while(runner->next != NULL) {
         int y = runner->bunny->loc.first;
         int x = runner->bunny->loc.second;
@@ -45,10 +47,12 @@ void Board::update_board(Node *runner) {
         runner = runner->next;
     }
 }
+
 void Board::print() {
     for(int i = 0; i < 80; i++) {
         std::cout << '.' << i%10;
     }
+    std::cout << '\n';
     for(int y = 79; y >= 0; y--) {
         for(int x = 0; x < 80; x++) {
             std::cout << '.' << board[y][x];
