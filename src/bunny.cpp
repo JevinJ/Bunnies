@@ -8,6 +8,7 @@
 #include <iostream>
 #include "bunny.h"
 
+
 void Bunny::make_adult() {
     isAdult = true;
 }

@@ -20,5 +20,4 @@ struct RandGen {
 };
 extern RandGen random;
 
-
 #endif /* RANDGEN_H_ */

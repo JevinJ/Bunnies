@@ -17,7 +17,6 @@
 
 struct Board {
     char board[80][80] = {{' '}};
-    char sex_to_c(Bunny *bunny);
     void clear_board();
     void update_board(Node *head);
     void print();

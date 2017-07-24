@@ -17,6 +17,33 @@
 
 int males = 0, females = 0, vampires = 0;
 
+void food_shortage(Node *head) {
+    int total = males+females+vampires;
+    std::queue<Node*> kill_queue;
+    //set to easily ensure we don't include the same bunny twice and keep pulling random
+    // numbers until we get a total of half the amount of bunnies
+    std::set<int> kill_index;
+    while(kill_index.size() != total/2) {
+        int r = rand() % total;
+        kill_index.insert(r);
+    }
+    for(int i = 0; i < kill_index.size(); i++) {
+        Node *runner = head->next;
+        int j = 0;
+        while(runner->next != NULL) {
+            if(kill_index.count(j)) {
+                kill_index.erase(j);
+                kill_queue.push(runner);
+                break;
+            }
+            j += 1;
+            runner = runner->next;
+        }
+    }
+    destroy_bunny_nodes(kill_queue);
+    count_types(head);
+}
+
 void age_bunnies(Node *head) {
     std::queue<Node*> kill_queue;
     Node *runner = head->next;
@@ -33,65 +60,7 @@ void age_bunnies(Node *head) {
         }
         runner = runner->next;
     }
-    execute_kill(kill_queue);
-}
-
-void count_types(Node *head) {
-    Node *runner = head->next;
-    males = 0; females = 0; vampires = 0;
-    while(runner->next != NULL) {
-        if(not runner->bunny->isVamp and runner->bunny->sex == 1) {
-            males += 1;
-        }
-        if(not runner->bunny->isVamp and runner->bunny->sex == 2) {
-            females += 1;
-        }
-        if(runner->bunny->isVamp) {
-            vampires += 1;
-        }
-        runner = runner->next;
-    }
-}
-
-bool checkGameOver() {
-    int total = males+females+vampires;
-    if((males == 0 and females > 0) or (females == 0 and males > 0) or (total == males or total == females or total == vampires)) {
-        if(vampires == total) {
-            std::cout << "All your bunnies are vampires! Game over.";
-            return true;
-        }
-        if(males == 0) {
-            std::cout << "There are no remaining male bunnies. Game over.";
-            return true;
-        }
-        if(females == 0) {
-            std::cout << "There are no remaining females bunnies. Game over.";
-            return true;
-        }
-    }
-    return false;
-}
-
-void turn_vamp(Node *head) {
-    int uninfected = (males+females)-vampires;
-    for(int i = 0; i < vampires and i < uninfected; i++, vampires--) {
-        Node *runner = head->next;
-        int r = rand() % uninfected;
-        int j = 0;
-        while(runner->next != NULL) {
-            if(j == r and runner->bunny->isVamp) {
-                break;
-            }
-            if(j == r) {
-                runner->bunny->isVamp = true;
-                runner->bunny->isAdult = false;
-                break;
-            }
-            j += 1;
-            runner = runner->next;
-        }
-    }
-    count_types(head);
+    destroy_bunny_nodes(kill_queue);
     game.update_board(head);
 }
 
@@ -117,42 +86,64 @@ void birth_and_move(Node *&head) {
         }
         runner = runner->next;
     }
+    count_types(head);
 }
 
-void execute_kill(std::queue<Node*> &kill_queue) {
-    while(not kill_queue.empty()) {
-        Node *node = kill_queue.front();
-        destroy_bunny_node(node);
-        kill_queue.pop();
+void count_types(Node *head) {
+    Node *runner = head->next;
+    males = 0; females = 0; vampires = 0;
+    while(runner->next != NULL) {
+        if(not runner->bunny->isVamp and runner->bunny->sex == 1) {
+            males += 1;
+        }
+        if(not runner->bunny->isVamp and runner->bunny->sex == 2) {
+            females += 1;
+        }
+        if(runner->bunny->isVamp) {
+            vampires += 1;
+        }
+        runner = runner->next;
     }
 }
 
-void food_shortage(Node *head) {
-    int total = males+females+vampires;
-    std::queue<Node*> kill_queue;
-    //set to ensure we don't include the same bunny twice and keep pulling random
-    // numbers until we get a total ofe half the amount of bunnies
-    std::set<int> kill_index;
-    while(kill_index.size() != total/2) {
-        int r = rand() % total;
-        kill_index.insert(r);
-    }
-    for(int i = 0; i < kill_index.size(); i++) {
+void turn_vamp(Node *head) {
+    int uninfected = (males+females)-vampires;
+    for(int i = 0; i < vampires and i < uninfected; i++, vampires--) {
         Node *runner = head->next;
+        int r = rand() % uninfected;
         int j = 0;
         while(runner->next != NULL) {
-            if(kill_index.count(j)) {
-                kill_queue.push(runner);
+            if(j == r and runner->bunny->isVamp) {
+                break;
+            }
+            if(j == r) {
+                runner->bunny->isVamp = true;
+                runner->bunny->isAdult = false;
                 break;
             }
             j += 1;
             runner = runner->next;
         }
     }
-    execute_kill(kill_queue);
     count_types(head);
+    game.update_board(head);
 }
 
-
-
-
+bool checkGameOver() {
+    int total = males+females+vampires;
+    if((males == 0 and females > 0) or (females == 0 and males > 0) or (total == males or total == females or total == vampires)) {
+        if(vampires == total) {
+            std::cout << "All your bunnies are vampires! Game over.";
+            return true;
+        }
+        if(males == 0) {
+            std::cout << "There are no remaining male bunnies. Game over.";
+            return true;
+        }
+        if(females == 0) {
+            std::cout << "There are no remaining females bunnies. Game over.";
+            return true;
+        }
+    }
+    return false;
+}

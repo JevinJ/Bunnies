@@ -8,7 +8,6 @@
 #include <iostream>
 #include <queue>
 
-
 #ifndef BUNNY_H_INCLUDED
 #define BUNNY_H_INCLDUED
 #include "bunny.h"
@@ -22,18 +21,16 @@ extern int males;
 extern int females;
 extern int vampires;
 
+void food_shortage(Node *head);
+
 void age_bunnies(Node *head);
-
-void count_types(Node *head);
-
-bool checkGameOver();
 
 void birth_and_move(Node *&head);
 
-void execute_kill(std::queue<Node*> &kill_queue);
+void count_types(Node *head);
 
 void turn_vamp(Node *head);
 
-void food_shortage(Node *head);
+bool checkGameOver();
 
 #endif /* TURN_H_ */

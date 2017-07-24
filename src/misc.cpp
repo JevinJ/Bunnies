@@ -9,6 +9,7 @@
 #include <queue>
 #include "board.h"
 #include "bunny.h"
+#include "misc.h"
 
 
 //Checking for free space surrounding a given bunny, used to find locations to
@@ -48,7 +49,25 @@ std::vector<std::pair<int, int>> check_nbors(Node *node) {
     return empty_nbors;
 }
 
-std::string color_to_c(Bunny *bunny) {
+char sex_to_c(Bunny *bunny) {
+    if(bunny->isVamp) {
+        return('X');
+    }
+    if(not bunny->isAdult and bunny->sex == 1) {
+        return('m');
+    }
+    if(bunny->isAdult and bunny->sex == 1) {
+        return('M');
+    }
+    if(not bunny->isAdult and bunny->sex == 2) {
+        return('f');
+    }
+    if(bunny->isAdult and bunny->sex == 2) {
+        return('F');
+    }
+}
+
+std::string color_to_str(Bunny *bunny) {
     if(bunny->color == 1) {
         return "White";
     }
@@ -63,20 +82,24 @@ std::string color_to_c(Bunny *bunny) {
     }
 }
 
-void create_bunny_node(Node *&head, Node *& node) {
-    std::cout << "Bunny " << node->bunny->name << ", was born." << " Color: " << color_to_c(node->bunny) << ", Gender: " << game.sex_to_c(node->bunny) << '\n';
+void create_bunny_node(Node *&head, Node *&node) {
+    std::cout << "Bunny " << node->bunny->name << ", was born." << " Color: " << color_to_str(node->bunny) << ", Gender: " << sex_to_c(node->bunny) << '\n';
     head->next->prev = node;
     node->next = head->next;
     node->prev = head;
     head->next = node;
 }
 
-void destroy_bunny_node(Node *&node) {
-    std::cout << "Bunny " << node->bunny->name << ", has died." << " Color: " << color_to_c(node->bunny) << ", Gender: " << game.sex_to_c(node->bunny) << '\n';
-    node->prev->next = node->next;
-    node->next->prev = node->prev;
-    delete node->bunny;
-    delete node;
+void destroy_bunny_nodes(std::queue<Node*> &kill_queue) {
+    while(not kill_queue.empty()) {
+        Node *node = kill_queue.front();
+        std::cout << "Bunny " << node->bunny->name << ", has died." << " Color: " << color_to_str(node->bunny) << ", Gender: " << sex_to_c(node->bunny) << '\n';
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+        delete node->bunny;
+        delete node;
+        kill_queue.pop();
+    }
 }
 
 

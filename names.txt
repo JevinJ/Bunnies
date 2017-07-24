@@ -19,7 +19,7 @@ C-3PO
 Cad Bane
 Cade Skywalker
 Callista Ming
-Captain Rex
+Rex
 Carnor Jax
 Chewbacca
 Commander Cody
@@ -297,13 +297,13 @@ Elrond
 Aragorn
 Arwen
 Sauron
-Eru Ilúvatar
+Eru Iluvatar
 Akira
 Ms. Albright
 Aristotle Amadopolis
-Atkins, State Comptroller
+Atkins
 Mary Bailey
-Birchibald "Birch" T. Barlow
+Birchibald T. Barlow
 Bart Simpson
 Jasper Beardly
 Blinky
@@ -315,18 +315,16 @@ Patty Bouvier
 Selma Bouvier
 Kent Brockman
 Bumblebee Man
-Charles Montgomery Burns
-Capital City Goofball
+Montgomery Burns
 Carl Carlson
 Shauna Chalmers
-Superintendent Gary Chalmers
+Gary Chalmers
 Charlie
 Chase
 Scott Christian
 Coach Lugash
 Comic Book Guy
 Mr. Costington
-Crazy Cat Lady
 Database
 Declan Desmond
 Disco Stu
@@ -346,16 +344,16 @@ Rod Flanders
 Todd Flanders
 Francesca
 Frankie the Squealer
-Professor John Frink
+John Frink
 Baby Gerald
 Ginger Flanders
 Gino
 Mrs. Glick
 Gloria
-Groundskeeper Willie
+Willie
 Barney Gumble
 Gil Gunderson
-Judge Constance Harm
+Constance Harm
 Herman Hermann
 Bernice Hibbert
 Dr. Julius Hibbert
@@ -374,7 +372,7 @@ Princess Kashmir
 Kearney Zzyzwicz
 Kearney Zzyzwicz Jr.
 Edna Krabappel
-Rabbi Hyman Krustofski
+Hyman Krustofski
 Krusty the Clown
 Cookie Kwan
 Dewey Largo
@@ -385,18 +383,18 @@ Leopold
 Lewis
 Lisa Simpson
 Helen Lovejoy
-Reverend Timothy Lovejoy
+Timothy Lovejoy
 Luigi
 Lurleen Lumpkin
 Maggie Simpson
 Otto Mann
 Marge Simpson
-Captain Horatio McCallister
+Horatio McCallister
 Troy McClure
 Roger Meyers, Jr.
 Hans Moleman
 Dr. Marvin Monroe
-Captain Lance Murdock
+Lance Murdock
 Bleeding Gums Murphy
 Lindsey Naegle
 Apu Nahasapeemapetilon
@@ -414,7 +412,7 @@ Ruth Powers
 Martin Prince
 Dr. J. Loren Pryor
 Arnie Pye
-Mayor "Diamond Joe" Quimby
+Quimby
 Radioactive Man
 The Rich Texan
 Richard
@@ -425,10 +423,10 @@ Dave Shutton
 Sideshow Bob
 Sideshow Mel
 Amber Simpson
-Grampa Abraham Simpson
+Abraham Simpson
 Mona Simpson
 Agnes Skinner
-Principal Seymour Skinner
+Seymour Skinner
 Waylon Smithers
 Snake Jailbird
 Snowball
@@ -436,20 +434,17 @@ Judge Roy Snyder
 Jebediah Springfield
 Brandine Spuckler
 Cletus Spuckler
-Squeaky-Voiced Teen
 Moe Szyslak
 Drederick Tatum
 Allison Taylor
 Mr. Teeny
 Cecil Terwilliger
-The Happy Little Elves
 Johnny Tightlips
 Kirk Van Houten
 Luann Van Houten
 Milhouse Van Houten
 Dr. Velimirovic
-Veterinarian
-Chief Clancy Wiggum
+Clancy Wiggum
 Ralph Wiggum
 Sarah Wiggum
 Wiseguy

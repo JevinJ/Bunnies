@@ -9,25 +9,8 @@
 #include <vector>
 #include "board.h"
 #include "bunny.h"
+#include "misc.h"
 
-
-char Board::sex_to_c(Bunny *bunny) {
-    if(bunny->isVamp) {
-        return('X');
-    }
-    if(not bunny->isAdult and bunny->sex == 1) {
-        return('m');
-    }
-    if(bunny->isAdult and bunny->sex == 1) {
-        return('M');
-    }
-    if(not bunny->isAdult and bunny->sex == 2) {
-        return('f');
-    }
-    if(bunny->isAdult and bunny->sex == 2) {
-        return('F');
-    }
-}
 
 void Board::clear_board() {
     for(int y = 0; y < 80; y++) {
