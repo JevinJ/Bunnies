@@ -14,6 +14,7 @@
 #include "randgen.h"
 
 
+//Random generators for all bunny attributes
 int RandGen::color() {
     return rand() % 4 + 1;
 }

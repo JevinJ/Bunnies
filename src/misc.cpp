@@ -13,7 +13,8 @@
 
 
 //Checking for free space surrounding a given bunny, used to find locations to
-// move to or give birth.
+// move to or give birth. Bunnies are allowed to loop back and move to an opposite
+// side of the map
 // 1|2|3
 // 4|*|5
 // 6|7|8
@@ -49,6 +50,7 @@ std::vector<std::pair<int, int>> check_nbors(Node *node) {
     return empty_nbors;
 }
 
+//Used to display bunny gender on the map and find neighbors for a bunny
 char sex_to_c(Bunny *bunny) {
     if(bunny->isVamp) {
         return('X');
@@ -67,6 +69,7 @@ char sex_to_c(Bunny *bunny) {
     }
 }
 
+//Used to output bunny info(Birth/Death) log on each turn
 std::string color_to_str(Bunny *bunny) {
     if(bunny->color == 1) {
         return "White";

@@ -28,6 +28,7 @@ Node *new_node(int m_color, std::pair<int, int> location, bool mode) {
     }
 }
 
+//Creates initial 5 random bunnies
 void init_bunnies(Node *&head, Node *&tail) {
     head->next = tail;
     tail->prev = head;

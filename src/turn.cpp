@@ -17,6 +17,8 @@
 
 int males = 0, females = 0, vampires = 0;
 
+//Food shortage is enabled once the population is > 1000 or
+// user initiates cull('k'), cutting the population in half
 void food_shortage(Node *head) {
     int total = males+females+vampires;
     std::queue<Node*> kill_queue;
@@ -44,6 +46,8 @@ void food_shortage(Node *head) {
     count_types(head);
 }
 
+//All bunnies will age by 1 for each turn, if bunnies are normal they will die at 11
+// if vampire, at 51
 void age_bunnies(Node *head) {
     std::queue<Node*> kill_queue;
     Node *runner = head->next;
@@ -64,6 +68,9 @@ void age_bunnies(Node *head) {
     game.update_board(head);
 }
 
+//Combined birth() and move() functions to resolve issue where bunnies would either be born
+// or move to an occupied space. Having them combined also prevents another node loop
+// and we don't have to check for free neighbors twice per bunny.
 void birth_and_move(Node *&head) {
     Node *runner = head->next;
     while(runner->next != NULL) {
@@ -89,6 +96,8 @@ void birth_and_move(Node *&head) {
     count_types(head);
 }
 
+//Counting types for turn_vamp(), cull/food_shortage(), and checking for game over states
+// this should be included at the end of functions that change the types/amount of bunnies
 void count_types(Node *head) {
     Node *runner = head->next;
     males = 0; females = 0; vampires = 0;
@@ -106,6 +115,8 @@ void count_types(Node *head) {
     }
 }
 
+//Will turn bunnies into vampires on each turn, at most doubling the amount of vampires
+// vampires are allowed to bite other vampires, this slows the rate somewhat
 void turn_vamp(Node *head) {
     int uninfected = (males+females)-vampires;
     for(int i = 0; i < vampires and i < uninfected; i++, vampires--) {
