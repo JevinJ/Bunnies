@@ -33,7 +33,7 @@ std::string RandGen::name() {
     names.clear();
     names.seekg(0, names.beg);
     int r = rand() % length;
-    for(int i = 0; std::getline(names, name); i++) {
+    for(unsigned int i = 0; std::getline(names, name); i++) {
         if(i == r) {
             return name;
         }

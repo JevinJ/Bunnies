@@ -30,7 +30,7 @@ void food_shortage(Node *head) {
         int r = rand() % total;
         kill_index.insert(r);
     }
-    for(int i = 0; i < kill_index.size(); i++) {
+    for(unsigned int i = 0; i < kill_index.size(); i++) {
         Node *runner = head->next;
         int j = 0;
         while(runner->next != NULL) {
