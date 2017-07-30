@@ -2,7 +2,7 @@
  * board.h
  *
  *  Created on: Jul 16, 2017
- *      Author: User
+ *      Author: Jevin
  */
 
 #ifndef BUNNY_H_INCLUDED

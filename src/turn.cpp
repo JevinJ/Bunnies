@@ -2,12 +2,13 @@
  * turn.cpp
  *
  *  Created on: Jul 18, 2017
- *      Author: User
+ *      Author: Jevin
  */
 
 #include <iostream>
 #include <queue>
 #include <set>
+#include <stdio.h>
 #include <stdlib.h>
 #include "board.h"
 #include "bunny.h"
@@ -144,15 +145,15 @@ bool checkGameOver() {
     int total = males+females+vampires;
     if((males == 0 and females > 0) or (females == 0 and males > 0) or (total == males or total == females or total == vampires)) {
         if(vampires == total) {
-            std::cout << "All your bunnies are vampires! Game over.";
+            printf("All your bunnies are vampires! Game over.\n");
             return true;
         }
         if(males == 0) {
-            std::cout << "There are no remaining male bunnies. Game over.";
+            printf("There are no remaining male bunnies. Game over.\n");
             return true;
         }
         if(females == 0) {
-            std::cout << "There are no remaining females bunnies. Game over.";
+            printf("There are no remaining females bunnies. Game over.\n");
             return true;
         }
     }

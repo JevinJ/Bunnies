@@ -2,10 +2,11 @@
  * board.cpp
  *
  *  Created on: Jul 16, 2017
- *      Author: User
+ *      Author: Jevin
  */
 
 #include <iostream>
+#include <stdio.h>
 #include <vector>
 #include "board.h"
 #include "bunny.h"
@@ -33,14 +34,14 @@ void Board::update_board(Node *head) {
 
 void Board::print() {
     for(int i = 0; i < 80; i++) {
-        std::cout << '.' << i%10;
+        printf("%c%d", '.', i%10);
     }
-    std::cout << '\n';
+    printf("\n");
     for(int y = 79; y >= 0; y--) {
         for(int x = 0; x < 80; x++) {
-            std::cout << '.' << board[y][x];
+            printf("%c%c", '.', board[y][x]);
         }
-        std::cout << y << '\n';
+        printf(" %d\n", y);
     }
 }
 

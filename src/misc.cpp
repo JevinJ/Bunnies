@@ -2,11 +2,13 @@
  * misc.cpp
  *
  *  Created on: Jul 16, 2017
- *      Author: User
+ *      Author: Jevin
  */
 
 #include <iostream>
 #include <queue>
+#include <stdio.h>
+#include <string>
 #include "board.h"
 #include "bunny.h"
 #include "misc.h"
@@ -86,7 +88,7 @@ std::string color_to_str(Bunny *bunny) {
 }
 
 void create_bunny_node(Node *&head, Node *&node) {
-    std::cout << "Bunny " << node->bunny->name << ", was born." << " Color: " << color_to_str(node->bunny) << ", Gender: " << sex_to_c(node->bunny) << '\n';
+    printf("Bunny %s, was born. Color: %s, Gender:  %c\n", node->bunny->name.c_str(), color_to_str(node->bunny).c_str(), sex_to_c(node->bunny));
     head->next->prev = node;
     node->next = head->next;
     node->prev = head;
@@ -96,7 +98,7 @@ void create_bunny_node(Node *&head, Node *&node) {
 void destroy_bunny_nodes(std::queue<Node*> &kill_queue) {
     while(not kill_queue.empty()) {
         Node *node = kill_queue.front();
-        std::cout << "Bunny " << node->bunny->name << ", has died." << " Color: " << color_to_str(node->bunny) << ", Gender: " << sex_to_c(node->bunny) << '\n';
+        printf("Bunny %s, has died. Color: %s, Gender:  %c\n", node->bunny->name.c_str(), color_to_str(node->bunny).c_str(), sex_to_c(node->bunny));
         node->prev->next = node->next;
         node->next->prev = node->prev;
         delete node->bunny;

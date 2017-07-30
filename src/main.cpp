@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <algorithm>
@@ -19,11 +20,11 @@ int main() {
     srand(time(NULL));
     init_bunnies(head, tail);
     int turn_num = 0;
-    cout << "Press enter to complete a turn. You can input k + enter to initiate a cull, killing half of your bunnies." << '\n';
+    printf("Press enter to complete a turn. You can input k + enter to initiate a cull, killing half of your bunnies.\n");
     while(true) {
         string input;
-        cout << "Turn number: " << turn_num << '\n';
-        cout << "Enter input, or press enter." << '\n';
+        printf("Turn number: %d\n", turn_num);
+        printf("Enter input, or press enter.\n");
         getline(std::cin, input);
         if(input == "k") {
             food_shortage(head);
@@ -32,7 +33,7 @@ int main() {
         birth_and_move(head);
         turn_vamp(head);
         if((males+females+vampires) > 1000) {
-            cout << "Food Shortage!" << '\n';
+            printf("Food Shortage!\n");
             food_shortage(head);
         }
         game.print();

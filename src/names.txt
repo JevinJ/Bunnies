@@ -1,0 +1,453 @@
+﻿4-LOM
+Aayla Secura
+Ackbar
+Thrawn
+Ahsoka Tano
+Anakin Solo
+Asajj Ventress
+Aurra Sing
+Bail Organa
+Barriss Offee
+Bastila Shan
+Ben Skywalker
+Bib Fortuna
+Biggs Darklighter
+Boba Fett
+Bossk
+Brakiss
+C-3PO
+Cad Bane
+Cade Skywalker
+Callista Ming
+Rex
+Carnor Jax
+Chewbacca
+Commander Cody
+Count Dooku
+Darth Bane
+Darth Krayt
+Darth Maul
+Darth Nihilus
+Darth Vader
+Dash Rendar
+Dengar
+Durge
+Palpatine
+Exar Kun
+Galen Marek
+Crix Madine
+Dodonna
+Grievous
+Veers
+Gilad Pellaeon
+Moff Tarkin
+Greedo
+Han Solo
+IG 88
+Jabba The Hutt
+Jacen Solo
+Jaina Solo
+Jango Fett
+Jarael
+Jerec
+Joruus C'Baoth
+Ki-Adi-Mundi
+Kir Kanos
+Kit Fisto
+Kyle Katarn
+Kyp Durron
+Lando Calrissian
+Luke Skywalker
+Luminara Unduli
+Lumiya
+Mace Windu
+Mara Jade
+Mission Vao
+Natasi Daala
+Nom Anor
+Obi-Wan Kenobi
+Padmé Amidala
+Plo Koon
+Pre Vizsla
+Prince Xizor
+Princess Leia
+PROXY
+Qui-Gon Jinn
+Quinlan Vos
+R2-D2
+Rahm Kota
+Revan
+Satele Shan
+Savage Opress
+Sebulba
+Shaak Ti
+Shmi Skywalker
+Talon Karrde
+Ulic Qel-Droma
+Visas Marr
+Watto
+Wedge Antilles
+Yoda
+Zam Wesell
+Zayne Carrick
+Zuckuss
+George Washington
+John Adams
+Thomas Jefferson
+James Madison
+James Monroe
+John Adams
+Andrew Jackson
+Martin Van Buren
+William	Harrison
+John Tyler
+James Polk
+Zachary	Taylor
+Millard	Fillmore
+Franklin Pierce
+James Buchanan
+Abraham	Lincoln
+Andrew Johnson
+Ulysses	Grant
+Rutherford Hayes
+James Garfield
+Chester Arthur
+Grover Cleveland
+Benjamin Harrison
+Grover Cleveland
+William	McKinley
+Theodore Roosevelt
+William	Taft
+Woodrow	Wilson
+Warren Harding
+Calvin Coolidge
+Herbert	Hoover
+Franklin Roosevelt
+Harry Truman
+Dwight Eisenhower
+John Kennedy
+Lyndon Johnson
+Richard	Nixon
+Gerald Ford
+Jimmy Carter
+Ronald Reagan
+George Bush
+Bill Clinton
+George Bush
+Barack Obama
+Jonathan Archer
+Ayala
+Azan
+Reginald Barclay
+Bareil Antos
+Julian Bashir
+B'Etor
+The Borg Queen
+Phillip Boyce
+Brunt
+Michael Burnham
+Joseph Carey
+Chakotay
+Christine Chapel
+Pavel Chekov
+Chell
+J. M. Colt
+Kimara Cretak
+Beverly Crusher
+Wesley Crusher
+Jal Culluh
+Elizabeth Cutler
+Leonardo da Vinci
+Damar
+Daniels
+Data
+Ezri Dax
+Jadzia Dax
+Degra
+The Doctor
+Dolim
+Dukat
+Michael Eddington
+Evek
+Female Changeling
+Vic Fontaine
+Maxwell Forrest
+Elim Garak
+Garrison
+Sonya Gomez
+Gowron
+Amanda Grayson
+Guinan
+J. Hayes
+Erika Hernandez
+Hogan
+Mr. Homn
+Hugh of Borg
+Icheb
+Ishka
+Kathryn Janeway
+Jannar
+Michael Jonas
+K'Ehleyr
+Kes
+Harry Kim
+Kira Nerys
+James T. Kirk
+Kor
+Kurn
+Geordi La Forge
+Leeta
+Robin Lefler
+Li Nalas
+Gabriel Lorca
+Lore
+Lursa
+Maihar'du
+Mallora
+Carol Marcus
+Martok
+Travis Mayweather
+Leonard McCoy
+Mezoti
+Mila
+Mora Pol
+Morn
+Mot
+Alynna Nechayev
+Neelix
+Susan Nicoletti
+Nog
+Kashimuro Nozawa
+Number One
+Keiko O'Brien
+Miles O'Brien
+Molly O'Brien
+Odo
+Alyssa Ogawa
+Opaka Sulan
+Owen Paris
+Tom Paris
+Phlox
+Jean-Luc Picard
+Christopher Pike
+Katherine Pulaski
+Q
+Quark
+Janice Rand
+Rebi
+Malcolm Reed
+William Riker
+Ro Laren
+Rom
+William Ross
+Michael Rostov
+Alexander Rozhenko
+Saavik
+Sarek
+Saru
+Hoshi Sato
+Sela
+Seska
+Seven of Nine
+Montgomery Scott
+Shakaar Edon
+Thy'lek Shran
+Silik
+Benjamin Sisko
+Jake Sisko
+Jennifer Sisko
+Joseph Sisko
+Sarah Sisko
+Luther Sloan
+Soval
+Spock
+Lon Suder
+Hikaru Sulu
+Enabran Tain
+Tal Celes
+Tomalak
+Tora Ziyal
+B'Elanna Torres
+T'Pol
+The Traveler
+Deanna Troi
+Lwaxana Troi
+Charles Tucker
+Tuvok
+José Tyler
+Nyota Uhura
+Vash
+Vorik
+Weyoun
+Naomi Wildman
+Samantha Wildman
+Winn Adami
+Worf
+Tasha Yar
+Kasidy Yates
+Zek
+Gandalf
+Frodo Baggins 
+Bilbo Baggins
+Galadriel
+Gollum
+Legolas
+Saruman
+Elrond
+Aragorn
+Arwen
+Sauron
+Eru Iluvatar
+Akira
+Ms. Albright
+Aristotle Amadopolis
+Atkins
+Mary Bailey
+Birchibald T. Barlow
+Bart Simpson
+Jasper Beardly
+Blinky
+Boobarella
+Wendell Borton
+Jacqueline Bouvier
+Ling Bouvier
+Patty Bouvier
+Selma Bouvier
+Kent Brockman
+Bumblebee Man
+Montgomery Burns
+Carl Carlson
+Shauna Chalmers
+Gary Chalmers
+Charlie
+Chase
+Scott Christian
+Coach Lugash
+Comic Book Guy
+Mr. Costington
+Database
+Declan Desmond
+Disco Stu
+Dolph
+Don Bronka
+Lunchlady Doris
+Dr. Nick Riviera
+Duffman
+Eddie
+Lou
+Ernst
+Gunter
+Fat Tony
+Maude Flanders
+Ned Flanders
+Rod Flanders
+Todd Flanders
+Francesca
+Frankie the Squealer
+John Frink
+Baby Gerald
+Ginger Flanders
+Gino
+Mrs. Glick
+Gloria
+Willie
+Barney Gumble
+Gil Gunderson
+Constance Harm
+Herman Hermann
+Bernice Hibbert
+Dr. Julius Hibbert
+Homer Simpson
+Elizabeth Hoover
+Lionel Hutz
+Itchy
+Scratchy
+Jacques
+Joey
+Jimbo Jones
+Rachel Jordan
+Kang
+Kodos
+Princess Kashmir
+Kearney Zzyzwicz
+Kearney Zzyzwicz Jr.
+Edna Krabappel
+Hyman Krustofski
+Krusty the Clown
+Cookie Kwan
+Dewey Largo
+Legs
+Louie
+Lenny Leonard
+Leopold
+Lewis
+Lisa Simpson
+Helen Lovejoy
+Timothy Lovejoy
+Luigi
+Lurleen Lumpkin
+Maggie Simpson
+Otto Mann
+Marge Simpson
+Horatio McCallister
+Troy McClure
+Roger Meyers, Jr.
+Hans Moleman
+Dr. Marvin Monroe
+Lance Murdock
+Bleeding Gums Murphy
+Lindsey Naegle
+Apu Nahasapeemapetilon
+Manjula Nahasapeemapetilon
+Sanjay Nahasapeemapetilon
+Nelson Muntz
+Old Jewish Man
+Patches
+Poor Violet
+Lois Pennycandy
+Poochie
+Herbert Powell
+Janey Powell
+Ruth Powers
+Martin Prince
+Dr. J. Loren Pryor
+Arnie Pye
+Quimby
+Radioactive Man
+The Rich Texan
+Richard
+Santa's Little Helper
+Sherri
+Terri
+Dave Shutton
+Sideshow Bob
+Sideshow Mel
+Amber Simpson
+Abraham Simpson
+Mona Simpson
+Agnes Skinner
+Seymour Skinner
+Waylon Smithers
+Snake Jailbird
+Snowball
+Judge Roy Snyder
+Jebediah Springfield
+Brandine Spuckler
+Cletus Spuckler
+Moe Szyslak
+Drederick Tatum
+Allison Taylor
+Mr. Teeny
+Cecil Terwilliger
+Johnny Tightlips
+Kirk Van Houten
+Luann Van Houten
+Milhouse Van Houten
+Dr. Velimirovic
+Clancy Wiggum
+Ralph Wiggum
+Sarah Wiggum
+Wiseguy
+Rainier Wolfcastle
+Artie Ziff
+Üter

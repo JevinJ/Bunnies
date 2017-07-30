@@ -2,7 +2,7 @@
  * bunny.cpp
  *
  *  Created on: Jul 16, 2017
- *      Author: User
+ *      Author: Jevin
  */
 
 #include <iostream>
